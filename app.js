@@ -1,9 +1,10 @@
+const { log } = require("console")
+
 const sum = (a,b) => {
     return a + b
 }
 
 console.log(sum(7,3))
-
 
 
 let oneEuroIs = {
@@ -12,29 +13,47 @@ let oneEuroIs = {
     "GBP": 0.87, // british pound
 }
 
-// Declaramos una función con el nombre exacto "formEuroToDollar"
-const fromEuroToDollar = function(valueInEuro) {
-    // Convertimos el valor a dólares
-    let valueInDollar = valueInEuro * 1.07;
-    // Retornamos el valor en dólares
+
+const fromEuroToDollar = function(valueInEuro) {  
+    if (valueInEuro <= 0){
+        console.log('ingrese un número mayor a 0');
+        return 0
+    }
+    const valueInDollar = valueInEuro * 1.07
+    console.log(valueInEuro + ' Euros equivalen a: ' + valueInDollar + ' Dólares.');
+    
     return valueInDollar;
 }
 
-const valueInDollar = fromEuroToDollar(10);
 
-const fromDollarToYen = () =>{
-    let valueInYen = valueInDollar * 156.5
-    return valueInYen;
+const fromDollarToYen = (valueInDollar) =>{
+    if (valueInDollar <= 0){
+        console.log('ingrese un número mayor a 0');
+        return 0
+    }
+    const dollarToEuro = valueInDollar / 1.07
+    const euroToYen = dollarToEuro * 156.5
+    console.log(valueInDollar + ' Dólares equivalen a: ' + euroToYen + ' Yenes.');
+
+    return euroToYen;
 }
 
-const valueInYen = fromDollarToYen();
 
-const fromYenToPound = () =>{
-let Pounds = valueInYen 
+const fromYenToPound = (valueInYen) => {
+     if (valueInYen <= 0){
+        console.log('ingrese un número mayor a 0');
+        return 0
+    }
+    const YenToEuro = valueInYen / 156.5
+    const EuroToPound = YenToEuro * 0.87
 
+    console.log(valueInYen + ' Yenes equivalen a: ' + EuroToPound  + ' Pounds.');
+
+    return EuroToPound 
 }
 
+fromEuroToDollar(15)
+fromDollarToYen(25)
+fromYenToPound(100)
 
-console.log(valueInYen);
-
-module.exports = { sum, fromEuroToDollar, fromDollarToYen }
+module.exports = { sum, fromEuroToDollar, fromDollarToYen, fromYenToPound }
